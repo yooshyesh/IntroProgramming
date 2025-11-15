@@ -1,0 +1,15 @@
+[
+    {
+      "user_id": "u001",
+      "duration": 120,
+      "success": true,
+      "backtracks": 2
+    },
+    {
+      "user_id": "u002",
+      "duration": 95,
+      "success": false,
+      "backtracks": 4
+    }
+  ]
+  

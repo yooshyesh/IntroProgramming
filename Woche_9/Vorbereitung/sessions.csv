@@ -1,0 +1,3 @@
+user_id,duration,success,backtracks
+u001,120,True,2
+u002,95,False,4
