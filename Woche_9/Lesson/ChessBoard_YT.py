@@ -23,20 +23,31 @@ def isValidChessBoard(board: dict[str, str]) -> bool:
     }
     invalid_pos = 0
     valid_pos = 0
+<<<<<<< HEAD
+=======
+    invalid_pcs = 0
+    valid_pcs = 0
+>>>>>>> 07b6b3d885647a6c14d26a7216cc1ad730c4b52c
     for position, piece in board.items():
         if position == valid_positions:
             valid_pos += 1
         else:
             invalid_pos += 1
-
-        if piece == valid_pieces:
-
-
-        color = piece[0]
-        name = piece[1:]
-
-        # Zähle die Figuren
-        #len(yourdict.keys())
+=======
+        if piece[1:] == valid_pieces:
+            valid_pcs +=1
+        else:
+            invalid_pcs += 1
+    # counting the pieces
+        color = piece[0] #definiert farbe als 1. index von piece
+        name = piece[1:] #definiert name des pieces als 1. Index bis ende von piece
+        if name == "pawn":
+            piece_counts[color]["pawn"] += 1
+        if name == "king":
+            piece_counts[color]["king"] += 1
+        if name == "total":
+            piece_counts[color]["total"] += 1
+>>>>>>> 07b6b3d885647a6c14d26a7216cc1ad730c4b52c
 
     # Regeln prüfen
     for color in 'wb':
