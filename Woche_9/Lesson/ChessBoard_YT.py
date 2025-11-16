@@ -23,11 +23,6 @@ def isValidChessBoard(board: dict[str, str]) -> bool:
     }
     invalid_pos = 0
     valid_pos = 0
-<<<<<<< HEAD
-=======
-    invalid_pcs = 0
-    valid_pcs = 0
->>>>>>> 07b6b3d885647a6c14d26a7216cc1ad730c4b52c
     for position, piece in board.items():
         if position == valid_positions:
             valid_pos += 1
