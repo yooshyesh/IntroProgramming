@@ -23,4 +23,4 @@ for k in kommentare: # k steht fuer Kategorie in kommentare
 
 print(f"Positive Kommentrare: {positiv}.")
 print(f"Negative Kommentrare: {negativ}.")
-#another test
+#another test§

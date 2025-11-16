@@ -1,0 +1,7 @@
+[
+    {"success": true, "duration": 30, "backtracks": 1},
+    {"success": false, "duration": 75, "backtracks": 4},
+    {"success": true, "duration": 30, "backtracks": 0},
+    {"success": true, "duration": 60, "backtracks": 2},
+    {"success": false, "duration": 90, "backtracks": 5}
+]
