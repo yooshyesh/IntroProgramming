@@ -5,14 +5,14 @@ the iterable version created with the x.items() function > parameter board = pro
 """
 def isValidChessBoard(board: dict[str, str]) -> bool:
     valid_positions = {
-    "a1","a2","a3","a4","a5","a6","a7","a8",
-    "b1","b2","b3","b4","b5","b6","b7","b8",
-    "c1","c2","c3","c4","c5","c6","c7","c8",
-    "d1","d2","d3","d4","d5","d6","d7","d8",
-    "e1","e2","e3","e4","e5","e6","e7","e8",
-    "f1","f2","f3","f4","f5","f6","f7","f8",
-    "g1","g2","g3","g4","g5","g6","g7","g8",
-    "h1","h2","h3","h4","h5","h6","h7","h8"
+    "1a","2a","3a","4a","5a","6a","7a","8a",
+    "1b","2b","3b","4b","5b","6b","7b","8b",
+    "1c","2c","3c","4c","5c","6c","7c","8c",
+    "1d","2d","3d","4d","5d","6d","7d","8d",
+    "1e","2e","3e","4e","5e","6e","7e","8e",
+    "1f","2f","3f","4f","5f","6f","7f","8f",
+    "1g","2g","3g","4g","5g","6g","7g","8g",
+    "1h","2h","3h","4h","5h","6h","7h","8h"
 }
 
     valid_pieces = {'pawn', 'knight', 'bishop', 'rook', 'queen', 'king'}
@@ -23,38 +23,29 @@ def isValidChessBoard(board: dict[str, str]) -> bool:
     }
     invalid_pos = 0
     valid_pos = 0
-<<<<<<< HEAD
-=======
-    invalid_pcs = 0
     valid_pcs = 0
->>>>>>> 07b6b3d885647a6c14d26a7216cc1ad730c4b52c
+    invalid_pcs = 0
     for position, piece in board.items():
-        if position == valid_positions:
+        if position in valid_positions:
             valid_pos += 1
         else:
             invalid_pos += 1
-<<<<<<< HEAD
-=======
-=======
 
->>>>>>> 07b6b3d885647a6c14d26a7216cc1ad730c4b52c
-        if piece[1:] == valid_pieces:
+        if piece[1:] in valid_pieces:
             valid_pcs +=1
         else:
             invalid_pcs += 1
     # counting the pieces
+
         color = piece[0] #definiert farbe als 1. index von piece
         name = piece[1:] #definiert name des pieces als 1. Index bis ende von piece
+
+        piece_counts[color]["total"] += 1
+
         if name == "pawn":
             piece_counts[color]["pawn"] += 1
         if name == "king":
             piece_counts[color]["king"] += 1
-        if name == "total":
-            piece_counts[color]["total"] += 1
-<<<<<<< HEAD
->>>>>>> 07b6b3d885647a6c14d26a7216cc1ad730c4b52c
-=======
->>>>>>> 07b6b3d885647a6c14d26a7216cc1ad730c4b52c
 
     # Regeln prüfen
     for color in 'wb':
@@ -67,4 +58,4 @@ def isValidChessBoard(board: dict[str, str]) -> bool:
 
 # Test mit dem Beispiel-Board
 test_board = {'1h': 'bking', '6c': 'wqueen', '2g': 'bbishop', '5h': 'bqueen', '3e': 'wking'}
-isValidChessBoard(test_board)
+print(isValidChessBoard(test_board))
