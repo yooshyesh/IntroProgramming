@@ -21,6 +21,21 @@ class UsabilitySession: # represents 1 object and its data
     def __str__(self):
         return f"- {self.user_id}, Dauer: {self.duration}s, Backtracks: {self.backtracks}"
     
+class SmartphoneSession(UsabilitySession):
+    def __init__(self, user_id, duration, success, backtracks, device_type):
+        super().__init__(user_id, duration, success, backtracks)
+        self.device_type = device_type
+    def __str__(self):
+        return f"- {self.user_id}, Dauer: {self.duration}s, Backtracks: {self.backtracks}, Geräteart: {self.device_type}"
+
+class TabletSession(UsabilitySession):
+    def __init__(self, user_id, duration, success, backtracks, device_type):
+        super().__init__(user_id, duration, success, backtracks)
+        self.device_type = device_type
+    def __str__(self):
+        return f"- {self.user_id}, Dauer: {self.duration}s, Backtracks: {self.backtracks}, Geräteart: {self.device_type}"
+    
+    
 class UsabilityStudy(): # represents a collection of many objects and the logic behind managing them
     def __init__(self):
         self.sessions = []
@@ -33,7 +48,8 @@ class UsabilityStudy(): # represents a collection of many objects and the logic 
                 user_id,
                 entry["duration"],
                 entry["success"],
-                entry["backtracks"]
+                entry["backtracks"],
+                if entry["device_type"] :
             )
             self.sessions.append(session)
     
@@ -68,7 +84,7 @@ class UsabilityStudy(): # represents a collection of many objects and the logic 
         with open(filepath, "w", encoding="utf-8") as file:
             file.write(f"Erfolgreiche Nutzer:innen: {self.count_successful_sessions()}")
             file.write(f"Durchschnittliche Dauer: {int(self.average_duration())} Sekunden\n")
-            file.write(f"Nutzer:innen mit >2 Backtracks und Erfolg:\n{filtered_u}")
+            file.write(f"Nutzer:innen mit >2 Backtracks und Erfolg:\n")
             for session in self.filter_sessions_with_many_backtracks_and_success():
                 file.write(str(session) + "\n")
 
