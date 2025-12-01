@@ -45,13 +45,39 @@ class UsabilityStudy(): # represents a collection of many objects and the logic 
     def load_from_json(self, filepath):
         with open(filepath, "r") as file:
             data = json.load(file)
-        for user_id, entry in enumerate(data, start=1): # go through each line and entry in json file and number it
-            session = UsabilitySession( # define Class with its content as one session
-                user_id,
-                entry["duration"],
-                entry["success"],
-                entry["backtracks"],
-            self.sessions.append(session)
+        for user_id, entry in enumerate(data, start=1):
+
+            if "device_type" in entry:
+                device_type = entry["device_type"]
+
+                if device_type in ["iPhone", "Galaxy S"]:
+                    smartphone_session = SmartphoneSession(
+                        user_id,
+                        entry["duration"],
+                        entry["success"],
+                        entry["backtracks"],
+                        device_type
+                    )
+                    self.sessions.append(smartphone_session)
+
+                else:
+                    tablet_session = TabletSession(
+                        user_id,
+                        entry["duration"],
+                        entry["success"],
+                        entry["backtracks"],
+                        device_type
+                    )
+                    self.sessions.append(tablet_session)
+
+            else:
+                session = UsabilitySession( # define Class with its content as one session
+                    user_id,
+                    entry["duration"],
+                    entry["success"],
+                    entry["backtracks"],
+                )
+                self.sessions.append(session)
     
     def average_duration(self):
         # durations = [] | for single_session in self.sessions: | durations.append(single_session.duration) | return statistics.mean(durations)
