@@ -21,9 +21,6 @@ class UsabilitySession: # represents 1 object and its data
     def __str__(self):
         return f"- {self.user_id}, Dauer: {self.duration}s, Backtracks: {self.backtracks}"
     
-"""Für Smartphones: iPhone, Galaxy S
-Für Tablets: iPad, Galaxy Tab"""
-    
 class SmartphoneSession(UsabilitySession):
     def __init__(self, user_id, duration, success, backtracks, device_type):
         super().__init__(user_id, duration, success, backtracks)
@@ -103,8 +100,52 @@ class UsabilityStudy(): # represents a collection of many objects and the logic 
         #return filtered_sessions
 
     def print_successful_sessions_by_platform(self, group_device_types=True):
-        self.group_device_types = group_device_types
-    
+        print("Erfolgreiche Sessions pro Plattform:")
+
+        counts = {}
+
+        # Zählen
+        for session in self.sessions:
+            if not session.is_successful():
+                continue
+
+            if isinstance(session, SmartphoneSession):
+                base = "Smartphone"
+            elif isinstance(session, TabletSession):
+                base = "Tablet"
+            else:
+                base = "Web"
+
+            if not group_device_types and hasattr(session, "device_type"):
+                key = f"{base}: {session.device_type}"
+            else:
+                key = base
+
+            counts[key] = counts.get(key, 0) + 1
+
+        # Definierte Reihenfolge
+        order = ["Tablet", "Smartphone", "Web"]
+        output_keys = []
+
+        for base in order:
+            # Erst Basisplattform (falls vorhanden)
+            if base in counts:
+                output_keys.append(base)
+
+            # Dann Unterkategorien wie "Smartphone: iPhone"
+            subkeys = [
+                k for k in counts.keys()
+                if k.startswith(base + ":")
+            ]
+            subkeys.sort()  # alphabetisch innerhalb der Plattform
+
+            output_keys.extend(subkeys)
+
+        # Ausgabe
+        for key in output_keys:
+            print(f"- {key}: {counts[key]}")
+
+     
     def save_evaluation(self, filepath):
         #successful = self.count_successful_sessions() # self. in front of other methods
         #avg_duration = round(self.average_duration())
