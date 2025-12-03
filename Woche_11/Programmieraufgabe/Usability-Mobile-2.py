@@ -45,15 +45,19 @@ class UsabilityStudy(): # represents a collection of many objects and the logic 
     def load_from_json(self, filepath):
         with open(filepath, "r") as file:
             data = json.load(file)
+            # user_id = 1
+            # for entry in data:
         for user_id, entry in enumerate(data, start=1):
 
-            if "device_type" in entry:
+            if "device_type" in entry: # if there is none, it's a usability session
                 device_type = entry["device_type"]
 
                 if device_type in ["iPhone", "Galaxy S"]:
+                # if device_type == "iPhone" or device_type == "Galaxy S":
+                    #session =
                     smartphone_session = SmartphoneSession(
                         user_id,
-                        entry["duration"],
+                        entry["duration"], # iterates through all dict in json list
                         entry["success"],
                         entry["backtracks"],
                         device_type
@@ -61,6 +65,7 @@ class UsabilityStudy(): # represents a collection of many objects and the logic 
                     self.sessions.append(smartphone_session)
 
                 else:
+                    # session =
                     tablet_session = TabletSession(
                         user_id,
                         entry["duration"],
@@ -78,6 +83,8 @@ class UsabilityStudy(): # represents a collection of many objects and the logic 
                     entry["backtracks"],
                 )
                 self.sessions.append(session)
+            # user_id += 1
+            # self.sessions.append(session) 3 birds with one stone
     
     def average_duration(self):
         # durations = [] | for single_session in self.sessions: | durations.append(single_session.duration) | return statistics.mean(durations)

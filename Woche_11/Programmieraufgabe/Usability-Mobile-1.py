@@ -24,16 +24,16 @@ class UsabilitySession: # represents 1 object and its data
 """Für Smartphones: iPhone, Galaxy S
 Für Tablets: iPad, Galaxy Tab"""
     
-class SmartphoneSession(UsabilitySession): # wouldn't be used in real life coding
+class SmartphoneSession(UsabilitySession):
     def __init__(self, user_id, duration, success, backtracks, device_type):
         super().__init__(user_id, duration, success, backtracks)
         self.device_type = device_type
     def __str__(self):
         return f"Smartphone: {self.device_type}"
 
-class TabletSession(UsabilitySession): # wouldn't be used in real life coding
-    def __init__(self, user_id, duration, success, backtracks, device_type):
-        super().__init__(user_id, duration, success, backtracks)
+class TabletSession(UsabilitySession):
+    def __init__(self, user_id, duration, success, backtracks, device_type): # has to be overwritten, since default is empty
+        super().__init__(user_id, duration, success, backtracks) # self is always included
         self.device_type = device_type
     def __str__(self):
         return f"Tablet: {self.device_type}"
