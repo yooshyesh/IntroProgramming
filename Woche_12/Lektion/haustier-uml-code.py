@@ -3,84 +3,50 @@ class Owner:
         self.name = name
         self.pets = []
 
-    def add_Pet(self, pet):
+    def add_Pet(self, pet: "Pet"):
+        pet.owner = self # setzt owner
         self.pets.append(pet)
     
     def list_Pets(self):
-        return self.pets
-        # return [p.name for p in self.pets]
-
-class Pet:
-    def __init__(self, name=str, age=int):
-        self.name = name
-        self.age = age
-
-class Cat(Pet):
-    def __init__(self, name=str, age=int, color=str):
-        super.__init__(name, age)
-        self.color = color
-
-
-class Dog(Pet):
-    def __init__(self, name=str, age=int, breed=str):
-        super.__init__(name, age)
-        self.breed = breed
-
-
-
-class Owner:
-    def __init__(self, name: str):
-        self.name = name
-        self.pets = []
-
-    def add_pet(self, pet: "Pet"):
-        pet.owner = self   # Owner wird gesetzt
-        self.pets.append(pet)
-
-    def list_pets(self):
+        # return self.pets
         return [p.name for p in self.pets]
 
-
 class Pet:
-    def __init__(self, name: str, age: int, owner: "Owner" = None):
+    def __init__(self, name=str, age=int, owner: "Owner" = None):
         self.name = name
         self.age = age
         self.owner = owner
 
     def speak(self):
-        """Wird von Unterklassen überschrieben."""
-        return "..."
-
+        return "..." # wird von Unterklasse überschrieben
+    
     def info(self):
         return f"{self.name} ({self.age} Jahre)"
 
-
-class Dog(Pet):
-    def __init__(self, name: str, age: int, breed: str, owner: "Owner" = None):
-        super().__init__(name, age, owner)
-        self.breed = breed
-
-    def speak(self):
-        return "Wuff!"
-
-
 class Cat(Pet):
-    def __init__(self, name: str, age: int, color: str, owner: "Owner" = None):
+    def __init__(self, name=str, age=int, color=str, owner: "Owner" = None):
         super().__init__(name, age, owner)
         self.color = color
 
     def speak(self):
         return "Miau!"
 
-## Beispiel Nutzung:
-anna = Owner("Leonie")
+class Dog(Pet):
+    def __init__(self, name=str, age=int, breed=str, owner: "Owner" = None):
+        super().__init__(name, age, owner)
+        self.breed = breed
 
-rex = Dog("Rex", 4, "Labrador")
-hexli = Cat("Hexli", 12, "Tigermuster")
+    def speak(self):
+        return "Wuff!"
 
-anna.add_pet(rex)
-anna.add_pet(hexli)
+anna = Owner("Anna")
 
-print(anna.list_pets())   # ['Rex', 'Hexli']
-print(rex.speak())        # Wuff!
-print(hexli.info())        # Hexli (12 Jahre)
+rex = Dog("Rex", 6, "Golden Retriever")
+bagger = Cat("Baggerli", 13, "Schildpatt")
+
+anna.add_Pet(bagger)
+anna.add_Pet(rex)
+
+print(anna.list_Pets())
+print(rex.speak())
+print(bagger.info())
