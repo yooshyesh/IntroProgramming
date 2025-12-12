@@ -1,0 +1,89 @@
+Variablen können ihren Typ zur Laufzeit verändern.
+
+Text Type:		str
+Numeric Types:	int, float, complex
+Sequence Types:	list, tuple, range
+Mapping Type:	dict
+Set Types:	set, frozenset
+Boolean Type:	bool
+Binary Types:	bytes, bytearray, memoryview
+None Type:	NoneType
+
+Setting types
+x = str("Hello World")	str	
+x = int(20)	int	
+x = float(20.5)
+x = dict(name="John", age=36)	dict	
+x = set(("apple", "banana", "cherry"))
+
+if, else, elif:
+for t in temps:
+    if t < allowed[0] or t > allowed[1]:
+        print(f"Warnung: {t}°C ausserhalb von {allowed}")
+    else:
+        ok += 1
+
+Loops
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x)
+
+for x in "banana":
+  print(x)
+
+With the break statement we can stop the loop before it has looped through all the items:
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x)
+  if x == "banana":
+    break
+With the continue statement we can stop the current iteration of the loop, and continue with the next:
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  if x == "banana":
+    continue
+  print(x)
+
+Range rules 
+The range() function returns a sequence of numbers, starting from 0 by default, and increments by 1 (by default), and ends at a specified number.
+for x in range(6):
+  print(x)
+>>Note that range(6) is not the values of 0 to 6, but the values 0 to 5.<<
+
+for in in range(2, 9, 3) 2 definiert Start, 9 das Ende, 3 die Increments dazwischen
+
+Modulo
+Modulo operator (%) in Python gives the remainder when one number is divided by another. 
+10 % 4 gives 2 because 10 divided by 4 leaves a remainder of 2.
+x = 3 % 1
+print(x)
+0
+
+y = 3 % 2
+print(y)
+1
+
+z = 0 % 11
+print(z)
+0
+
+Datenstrukturen
+Github repo
+Du möchtest eine Einkaufsliste speichern, bei der jede Kategorie (z. B. "Obst", "Getränke") eine Liste von Artikeln enthält.
+Wähle die am besten passende Datenstruktur.
+a.
+list[str]
+>>b.
+dict[str, list[str]]<<
+c.
+list[dict[str, str]]
+d.
+dict[str, str]
+
+The sum() function returns a number, the sum of all items in an iterable.
+sum(iterable, start) > iterable	Required. The sequence to sum
+start	Optional. A value that is added to the return value
+a = (1, 2, 3, 4, 5)
+x = sum(a, 7)
+scores = [58, 72, 0, 91, 65]
+ptint(sum(scores))
