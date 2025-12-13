@@ -87,3 +87,27 @@ a = (1, 2, 3, 4, 5)
 x = sum(a, 7)
 scores = [58, 72, 0, 91, 65]
 ptint(sum(scores))
+
+Sets
+Als set definieren: 
+>registered: set[str] = {"Anna", "Bob", "Clara", "Diego"} Achtung: Doppelpunkt nach setname, = nach type Definition
+>present = set()
+Anstatt .append wird .add verwendet
+
+dictionaries
+grades = {"Anna": 5.0, "Bob": 4.0, "Clara": 5.5, "Diego": 3.5}
+for n in grades:
+    print(g)
+
+grades: dict[str, float] = {"Anna": 5.0, "Bob": 4.0, "Clara": 5.5, "Diego": 3.5}
+total = 0
+for name, note in grades.items():
+    if note >= 4.0:
+        status = "bestanden"
+    else:
+        status = "nicht bestanden"
+    print(f"{name}: {note:.1f} – {status}")
+    total += note
+avg = total / len(grades) if grades else 0
+print(f"Klassendurchschnitt: {avg:.2f}")
+
