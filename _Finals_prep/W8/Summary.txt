@@ -95,10 +95,15 @@ Als set definieren:
 Anstatt .append wird .add verwendet
 
 dictionaries
+Einträge hinzufügen
+dict.append()
+dict[key].append(text) > 'key': ['text1', 'text2'],
+Einzelne Einträge ausgeben:
 grades = {"Anna": 5.0, "Bob": 4.0, "Clara": 5.5, "Diego": 3.5}
 for n in grades:
     print(g)
 
+Durch Werte gehen und damit weiterarbeiten in purem dictionary
 grades: dict[str, float] = {"Anna": 5.0, "Bob": 4.0, "Clara": 5.5, "Diego": 3.5}
 total = 0
 for name, note in grades.items():
@@ -108,6 +113,29 @@ for name, note in grades.items():
         status = "nicht bestanden"
     print(f"{name}: {note:.1f} – {status}")
     total += note
+Durschnitt berechnen
 avg = total / len(grades) if grades else 0
 print(f"Klassendurchschnitt: {avg:.2f}")
+
+in verschachteltem dictionary:
+kommentare = [
+    {"text": "Die Navigation war klar.", "bewertung": "positiv"},
+for rating in kommentare:
+    if rating["bewertung"] == "positiv":
+        positiv += 1
+
+Verschachteltes dictiory erstellen:
+def gruppiere_nach_bewertung(kommentare):
+    gruppiert = {} # Äussere Hülle = leeres dictionary
+    for entry in kommentare:
+        bewertung = entry["bewertung"] # variable von keys erstellen
+        text = entry["text"]
+        if bewertung not in gruppiert: # falls noch nicht in gruppiert
+            gruppiert[bewertung] = [] # Innere Hülle = leere Liste, bewertung als dict key setzen
+        gruppiert[bewertung].append(text) # text in Liste einfügen
+
+Tuples
+Bewertung = ("Die Navigation war klar.", "positiv")
+Indexierung
+Bewertung[0], Bewertung [1]
 
